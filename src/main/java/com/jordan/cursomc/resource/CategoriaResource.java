@@ -2,8 +2,9 @@ package com.jordan.cursomc.resource;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,17 +37,19 @@ public class CategoriaResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insertEntity(@RequestBody Categoria obj) {
+	public ResponseEntity<Void> insertEntity(@Valid @RequestBody CategoriaDTO objDto) {
 		
+		Categoria obj = service.fromDTO(objDto);
 		obj = service.insertCategoria(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objDto.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> updateEntity(@RequestBody Categoria obj, @PathVariable Integer id) {
+	public ResponseEntity<Void> updateEntity(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id) {
 		
+		Categoria obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.updateCategoria(obj);
 		
