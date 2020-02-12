@@ -2,13 +2,12 @@ package com.jordan.cursomc.resource;
 
 import com.jordan.cursomc.domain.Cliente;
 import com.jordan.cursomc.dto.ClienteDTO;
+import com.jordan.cursomc.dto.ClienteNewDTO;
+import com.jordan.cursomc.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.jordan.cursomc.domain.Cliente;
-import com.jordan.cursomc.services.ClienteService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -29,6 +28,16 @@ public class ClienteResource {
 		Cliente obj = service.find(id);
 		
 		return ResponseEntity.ok().body(obj);
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insertEntity(@Valid @RequestBody ClienteNewDTO objDto) {
+
+		Cliente obj = service.fromDTO(objDto);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+
+		return ResponseEntity.created(uri).build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
