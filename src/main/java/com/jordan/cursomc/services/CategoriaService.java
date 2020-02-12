@@ -1,8 +1,10 @@
 package com.jordan.cursomc.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.jordan.cursomc.domain.Categoria;
+import com.jordan.cursomc.dto.CategoriaDTO;
+import com.jordan.cursomc.exceptions.DataIntegrityException;
+import com.jordan.cursomc.exceptions.ObjectNotFoundException;
+import com.jordan.cursomc.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -10,11 +12,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.jordan.cursomc.domain.Categoria;
-import com.jordan.cursomc.dto.CategoriaDTO;
-import com.jordan.cursomc.exceptions.DataIntegrityException;
-import com.jordan.cursomc.exceptions.ObjectNotFoundException;
-import com.jordan.cursomc.repositories.CategoriaRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoriaService {
@@ -33,7 +32,8 @@ public class CategoriaService {
 	}
 	
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
+		Categoria newObj = find(obj.getId());
+		updateData(newObj, obj);
 		return repo.save(obj);
 	}
 	
@@ -59,5 +59,9 @@ public class CategoriaService {
 	
 	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
+	}
+
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
 	}
 }
