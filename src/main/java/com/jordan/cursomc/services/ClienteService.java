@@ -1,16 +1,8 @@
 package com.jordan.cursomc.services;
 
-import com.jordan.cursomc.domain.Cidade;
-import com.jordan.cursomc.domain.Cliente;
-import com.jordan.cursomc.domain.Endereco;
-import com.jordan.cursomc.domain.enums.TipoCliente;
-import com.jordan.cursomc.dto.ClienteDTO;
-import com.jordan.cursomc.dto.ClienteNewDTO;
-import com.jordan.cursomc.exceptions.DataIntegrityException;
-import com.jordan.cursomc.exceptions.ObjectNotFoundException;
-import com.jordan.cursomc.repositories.CidadeRepository;
-import com.jordan.cursomc.repositories.ClienteRepository;
-import com.jordan.cursomc.repositories.EnderecoRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -19,16 +11,22 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import com.jordan.cursomc.domain.Cidade;
+import com.jordan.cursomc.domain.Cliente;
+import com.jordan.cursomc.domain.Endereco;
+import com.jordan.cursomc.domain.enums.TipoCliente;
+import com.jordan.cursomc.dto.ClienteDTO;
+import com.jordan.cursomc.dto.ClienteNewDTO;
+import com.jordan.cursomc.exceptions.DataIntegrityException;
+import com.jordan.cursomc.exceptions.ObjectNotFoundException;
+import com.jordan.cursomc.repositories.ClienteRepository;
+import com.jordan.cursomc.repositories.EnderecoRepository;
 
 @Service
 public class ClienteService {
 
     @Autowired
     private ClienteRepository repo;
-    @Autowired
-    private CidadeRepository cidadeRepository;
     @Autowired
     private EnderecoRepository enderecoRepository;
 

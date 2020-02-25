@@ -1,20 +1,20 @@
 package com.jordan.cursomc.services.validation;
 
-import com.jordan.cursomc.domain.Cliente;
-import com.jordan.cursomc.domain.enums.TipoCliente;
-import com.jordan.cursomc.dto.ClienteDTO;
-import com.jordan.cursomc.repositories.ClienteRepository;
-import com.jordan.cursomc.resource.exception.FieldMessage;
-import com.jordan.cursomc.services.validation.utils.BR;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.HandlerMapping;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.HandlerMapping;
+
+import com.jordan.cursomc.domain.Cliente;
+import com.jordan.cursomc.dto.ClienteDTO;
+import com.jordan.cursomc.repositories.ClienteRepository;
+import com.jordan.cursomc.resource.exception.FieldMessage;
 
 public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDTO> {
 
