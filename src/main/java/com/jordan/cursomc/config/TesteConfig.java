@@ -2,6 +2,8 @@ package com.jordan.cursomc.config;
 
 import java.text.ParseException;
 
+import com.jordan.cursomc.services.EmailService;
+import com.jordan.cursomc.services.MockEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,5 +23,10 @@ public class TesteConfig {
 		
 		dbService.instantiateTestDatabase();
 		return true;
+	}
+
+	@Bean
+	public EmailService emailService() {
+		return new MockEmailService();
 	}
 }
