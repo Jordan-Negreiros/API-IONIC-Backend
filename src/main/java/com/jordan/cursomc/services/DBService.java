@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
+import com.jordan.cursomc.domain.enums.Perfil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -87,10 +88,16 @@ public class DBService {
 		
 		Cliente cli1 = new Cliente(null, "Maria Silva", "jordannegreirossantos@gmail.com", "363789912377", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
-		
+
+		Cliente cli2 = new Cliente(null, "Jordan", "jordannegreirossantos@gmail.com", "16419125707", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		cli2.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
+		cli2.addPerfil(Perfil.ADMIN);
+
+
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "apto 303", "Jardim", "3822034", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
-		
+		Endereco e3 = new Endereco(null, "Rua Amarildo", "375", null, "Centro", "25570760", cli2, c2);
+
 		cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
 		
@@ -102,13 +109,14 @@ public class DBService {
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
 		
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
-		
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
+
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6,cat7, cat8, cat9, cat10, cat11, cat12, cat13, cat14, cat15, cat16));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
