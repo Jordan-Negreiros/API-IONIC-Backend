@@ -2,7 +2,7 @@ package com.jordan.cursomc.services;
 
 import com.jordan.cursomc.domain.Categoria;
 import com.jordan.cursomc.domain.Produto;
-import com.jordan.cursomc.exceptions.ObjectNotFoundException;
+import com.jordan.cursomc.services.exceptions.ObjectNotFoundException;
 import com.jordan.cursomc.repositories.CategoriaRepository;
 import com.jordan.cursomc.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

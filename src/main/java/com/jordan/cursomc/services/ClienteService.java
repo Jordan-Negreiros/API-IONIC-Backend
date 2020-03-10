@@ -3,6 +3,9 @@ package com.jordan.cursomc.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.jordan.cursomc.domain.enums.Perfil;
+import com.jordan.cursomc.services.exceptions.AuthorizationException;
+import com.jordan.cursomc.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -18,8 +21,8 @@ import com.jordan.cursomc.domain.Endereco;
 import com.jordan.cursomc.domain.enums.TipoCliente;
 import com.jordan.cursomc.dto.ClienteDTO;
 import com.jordan.cursomc.dto.ClienteNewDTO;
-import com.jordan.cursomc.exceptions.DataIntegrityException;
-import com.jordan.cursomc.exceptions.ObjectNotFoundException;
+import com.jordan.cursomc.services.exceptions.DataIntegrityException;
+import com.jordan.cursomc.services.exceptions.ObjectNotFoundException;
 import com.jordan.cursomc.repositories.ClienteRepository;
 import com.jordan.cursomc.repositories.EnderecoRepository;
 
@@ -34,6 +37,12 @@ public class ClienteService {
     private BCryptPasswordEncoder pe;
 
     public Cliente find(Integer id) {
+
+        UserSS user = UserService.authenticated();
+        if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+            throw new AuthorizationException("Acesso Negado");
+        }
+
         Optional<Cliente> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
     }

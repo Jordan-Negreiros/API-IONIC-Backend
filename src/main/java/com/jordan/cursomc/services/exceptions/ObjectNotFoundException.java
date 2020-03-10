@@ -1,4 +1,4 @@
-package com.jordan.cursomc.exceptions;
+package com.jordan.cursomc.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
 	private static final long serialVersionUID = 1L;

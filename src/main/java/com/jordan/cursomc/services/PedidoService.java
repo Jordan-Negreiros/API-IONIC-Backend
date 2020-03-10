@@ -11,7 +11,7 @@ import com.jordan.cursomc.domain.ItemPedido;
 import com.jordan.cursomc.domain.PagamentoComBoleto;
 import com.jordan.cursomc.domain.Pedido;
 import com.jordan.cursomc.domain.enums.EstadoPagamento;
-import com.jordan.cursomc.exceptions.ObjectNotFoundException;
+import com.jordan.cursomc.services.exceptions.ObjectNotFoundException;
 import com.jordan.cursomc.repositories.ItemPedidoRepository;
 import com.jordan.cursomc.repositories.PagamentoRepository;
 import com.jordan.cursomc.repositories.PedidoRepository;
