@@ -1,8 +1,10 @@
 package com.jordan.cursomc.services;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import com.amazonaws.services.dynamodbv2.xspec.S;
 import com.jordan.cursomc.domain.enums.Perfil;
 import com.jordan.cursomc.services.exceptions.AuthorizationException;
 import com.jordan.cursomc.security.UserSS;
@@ -25,6 +27,7 @@ import com.jordan.cursomc.services.exceptions.DataIntegrityException;
 import com.jordan.cursomc.services.exceptions.ObjectNotFoundException;
 import com.jordan.cursomc.repositories.ClienteRepository;
 import com.jordan.cursomc.repositories.EnderecoRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ClienteService {
@@ -35,6 +38,8 @@ public class ClienteService {
     private EnderecoRepository enderecoRepository;
     @Autowired
     private BCryptPasswordEncoder pe;
+    @Autowired
+    private S3Service s3Service;
 
     public Cliente find(Integer id) {
 
@@ -104,5 +109,9 @@ public class ClienteService {
     private void updateData(Cliente newObj, Cliente obj) {
         newObj.setNome(obj.getNome());
         newObj.setEmail(obj.getEmail());
+    }
+
+    public URI uploadProfilePicture(MultipartFile multipartFile) {
+        return s3Service.uploadFile(multipartFile);
     }
 }
