@@ -29,8 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private Environment environment;
+
     @Autowired
     private UserDetailsService userDetailsService;
+
     @Autowired
     private JWTUtil jwtUtil;
 
@@ -74,8 +76,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
+
+        CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+        configuration.setAllowedMethods(Arrays.asList("POST", "PUT", "GET", "DELETE", "OPTIONS"));
+
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 
