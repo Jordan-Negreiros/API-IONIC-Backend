@@ -1,7 +1,6 @@
 package com.jordan.cursomc.config;
 
-import java.text.ParseException;
-
+import com.jordan.cursomc.services.DBService;
 import com.jordan.cursomc.services.EmailService;
 import com.jordan.cursomc.services.SmtpEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.jordan.cursomc.services.DBService;
+import java.text.ParseException;
 
 @Configuration
 @Profile("dev")

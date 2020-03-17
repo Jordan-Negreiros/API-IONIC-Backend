@@ -2,9 +2,9 @@ package com.jordan.cursomc.services;
 
 import com.jordan.cursomc.domain.Categoria;
 import com.jordan.cursomc.dto.CategoriaDTO;
+import com.jordan.cursomc.repositories.CategoriaRepository;
 import com.jordan.cursomc.services.exceptions.DataIntegrityException;
 import com.jordan.cursomc.services.exceptions.ObjectNotFoundException;
-import com.jordan.cursomc.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;

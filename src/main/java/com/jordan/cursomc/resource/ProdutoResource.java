@@ -1,8 +1,6 @@
 package com.jordan.cursomc.resource;
 
-import com.jordan.cursomc.domain.Categoria;
 import com.jordan.cursomc.domain.Produto;
-import com.jordan.cursomc.dto.CategoriaDTO;
 import com.jordan.cursomc.dto.ProdutoDTO;
 import com.jordan.cursomc.resource.utils.URL;
 import com.jordan.cursomc.services.ProdutoService;

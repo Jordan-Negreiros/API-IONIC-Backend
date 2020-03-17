@@ -1,36 +1,17 @@
 package com.jordan.cursomc.services;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-
+import com.jordan.cursomc.domain.*;
+import com.jordan.cursomc.domain.enums.EstadoPagamento;
 import com.jordan.cursomc.domain.enums.Perfil;
+import com.jordan.cursomc.domain.enums.TipoCliente;
+import com.jordan.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.jordan.cursomc.domain.Categoria;
-import com.jordan.cursomc.domain.Cidade;
-import com.jordan.cursomc.domain.Cliente;
-import com.jordan.cursomc.domain.Endereco;
-import com.jordan.cursomc.domain.Estado;
-import com.jordan.cursomc.domain.ItemPedido;
-import com.jordan.cursomc.domain.Pagamento;
-import com.jordan.cursomc.domain.PagamentoComBoleto;
-import com.jordan.cursomc.domain.PagamentoComCartao;
-import com.jordan.cursomc.domain.Pedido;
-import com.jordan.cursomc.domain.Produto;
-import com.jordan.cursomc.domain.enums.EstadoPagamento;
-import com.jordan.cursomc.domain.enums.TipoCliente;
-import com.jordan.cursomc.repositories.CategoriaRepository;
-import com.jordan.cursomc.repositories.CidadeRepository;
-import com.jordan.cursomc.repositories.ClienteRepository;
-import com.jordan.cursomc.repositories.EnderecoRepository;
-import com.jordan.cursomc.repositories.EstadoRepository;
-import com.jordan.cursomc.repositories.ItemPedidoRepository;
-import com.jordan.cursomc.repositories.PagamentoRepository;
-import com.jordan.cursomc.repositories.PedidoRepository;
-import com.jordan.cursomc.repositories.ProdutoRepository;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 
 @Service
 public class DBService {
